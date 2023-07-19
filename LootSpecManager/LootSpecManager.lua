@@ -29,13 +29,13 @@ end
 function LootSpecManager:GetLootSpecForEncounter(encounterId, difficultyId)
     local encounters = self.savedVariables.profile.encounter[difficultyId] or {}
 
-    return encounters[encounterId] or LootSpecManager.CURRENT_LOOT_SPEC
+    return encounters[encounterId] or 0
 end
 
 function LootSpecManager:GetLootSpecForMap(mapId, difficultyId)
     local instances = self.savedVariables.profile.instance[difficultyId] or {}
 
-    return instances[mapId] or LootSpecManager.CURRENT_LOOT_SPEC
+    return instances[mapId] or 0
 end
 
 function LootSpecManager:SetLootSpecForMap(mapId, difficultyId, lootSpecId)

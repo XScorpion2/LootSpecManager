@@ -29,13 +29,13 @@ end
 function LootSpecManager:GetLootSpecForEncounter(encounterId, difficultyId)
     local encounters = self.savedVariables.profile.encounter[difficultyId] or {}
 
-    return encounters[encounterId] or 0
+    return encounters[encounterId] or LootSpecManager.CURRENT_LOOT_SPEC
 end
 
 function LootSpecManager:GetLootSpecForMap(mapId, difficultyId)
     local instances = self.savedVariables.profile.instance[difficultyId] or {}
 
-    return instances[mapId] or 0
+    return instances[mapId] or LootSpecManager.CURRENT_LOOT_SPEC
 end
 
 function LootSpecManager:SetLootSpecForMap(mapId, difficultyId, lootSpecId)
@@ -97,7 +97,7 @@ function LootSpecManager:OnEncounterStart(_, encounterId, encounterName, difficu
     if (not encounterName) then encounterName = 'unknown' end
     local requestedLootSpec = self:GetLootSpecForEncounter(encounterId, difficultyId)
 
-    if requestedLootSpec == LootSpecManager.CURRENT_LOOT_SPEC then
+    if requestedLootSpec == GetLootSpecialization() then
         LootSpecManager:Printf('%s engaged, loot spec already ok', encounterName)
         return
     end
@@ -115,7 +115,7 @@ function LootSpecManager:OnMythicPlusStart(_, mapId)
     local _, specializationName = GetSpecializationInfoByID(requestedLootSpec)    
     if (not specializationName) then specializationName = requestedLootSpec end
 
-    if requestedLootSpec == LootSpecManager.CURRENT_LOOT_SPEC then
+    if requestedLootSpec == GetLootSpecialization() then
         LootSpecManager:Printf('M+ dungeon started, loot spec alread ok')
         return
     end

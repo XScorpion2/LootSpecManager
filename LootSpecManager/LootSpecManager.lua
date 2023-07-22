@@ -116,7 +116,7 @@ function LootSpecManager:OnMythicPlusStart(_, mapId)
     if (not specializationName) then specializationName = requestedLootSpec end
 
     if requestedLootSpec == GetLootSpecialization() then
-        LootSpecManager:Printf('M+ dungeon started, loot spec alread ok')
+        LootSpecManager:Printf('M+ dungeon started, loot spec already ok')
         return
     end
 
